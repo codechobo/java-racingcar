@@ -8,5 +8,14 @@ public class Car {
         this.name = name;
     }
 
-    // 추가 기능 구현
+    // 전진 기능
+    public void moveForward() {
+    }
+
+    // 멈춤 기능
+    public void stop() {
+
+    }
+
+
 }
