@@ -54,4 +54,12 @@ public class Car {
     public boolean isEngineOff() {
         return this.engineStatus.isOff();
     }
+
+    public int getPosition() {
+        return this.position;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }
