@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,8 @@ public class Car {
         if (condition.isCondition()) {
             this.position += 1;
         }
+
+        OutputView.printCarMoveStatus(this.name, this.position);
     }
 
     // 멈춤 기능
@@ -35,10 +39,6 @@ public class Car {
         }
 
         this.engineStatus = EngineStatus.ON;
-    }
-
-    public int getPosition() {
-        return this.position;
     }
 
     public static List<Car> createCars(List<String> carNames) {
