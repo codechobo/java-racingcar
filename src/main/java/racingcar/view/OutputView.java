@@ -1,5 +1,10 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
 
     public static final String CAR_NAMES_READ_MESSAGE = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
@@ -26,5 +31,11 @@ public class OutputView {
         }
 
         System.out.printf("%s : %s\n", carName, moveStatus);
+    }
+
+    public static void printVictoryCar(List<Car> victoryCarNames) {
+        String carName = victoryCarNames.stream().map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.printf("최종 우승자 : %s\n", carName);
     }
 }
