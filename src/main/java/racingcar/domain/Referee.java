@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 
 public class Referee {
 
-    public List<Car> findVictoryCarName(List<Car> cars) {
-        return findVictoryCar(cars);
+    public List<String> findVictoryCarName(List<Car> cars) {
+        return findVictoryCar(cars).stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private List<Car> findVictoryCar(List<Car> cars) {
@@ -16,7 +18,8 @@ public class Referee {
     }
 
     private int findMaxPosition(List<Car> cars) {
-        return cars.stream().mapToInt(Car::getPosition)
+        return cars.stream()
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
     }

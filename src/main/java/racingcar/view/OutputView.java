@@ -33,9 +33,7 @@ public class OutputView {
         System.out.printf("%s : %s\n", carName, moveStatus);
     }
 
-    public static void printVictoryCar(List<Car> victoryCarNames) {
-        String carName = victoryCarNames.stream().map(Car::getName)
-                .collect(Collectors.joining(", "));
-        System.out.printf("최종 우승자 : %s\n", carName);
+    public static void printVictoryCar(List<String> victoryCarNames) {
+        System.out.printf("최종 우승자 : %s\n", String.join("", victoryCarNames));
     }
 }
