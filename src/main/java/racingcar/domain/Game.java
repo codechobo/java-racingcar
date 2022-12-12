@@ -15,34 +15,31 @@ public class Game {
     }
 
     public void start(List<String> carNames, int step) {
-        this.cars.addAll(Car.createCars(carNames));
-
+        saveCarNames(carNames);
         OutputView.printRunResultMessage();
-        // 엔진 상태가 on 일 때 까지
+
+        process(step);
+        OutputView.printVictoryCar(this.referee.findVictoryCarName(this.cars));
+    }
+
+    private void saveCarNames(List<String> carNames) {
+        this.cars.addAll(Car.createCars(carNames));
+    }
+
+    private void process(int step) {
         while (true) {
-            boolean isOff = false;
-            isOff = engineStatusByMove(this.cars, step, isOff);
+            boolean isMoving = true;
+            for (Car car : this.cars) {
+                car.moving(step);
+                isMoving = car.isPossibleMove();
+            }
+
             System.out.println();
             step--;
 
-            if (isOff) {
+            if (!isMoving) {
                 break;
             }
         }
-
-        OutputView.printVictoryCar(referee.findVictoryCarName(this.cars));
-    }
-
-    private boolean engineStatusByMove(List<Car> cars, int step, boolean isOff) {
-        for (Car car : cars) {
-            car.moveForward(step);
-            isOff = car.isEngineOff();
-        }
-
-        return isOff;
-    }
-
-    public List<Car> getCars() {
-        return this.cars;
     }
 }

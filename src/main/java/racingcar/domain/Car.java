@@ -5,6 +5,7 @@ import racingcar.domain.move.engine.Engine;
 import racingcar.domain.move.Move;
 import racingcar.domain.move.condition.MoveCondition;
 import racingcar.domain.move.condition.RandomNumberGenerator;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Car {
     // 움직이다.
     public void moving(int step) {
         this.move.forward(step);
+        OutputView.printCarMoveStatus(this.name, this.move.currentPosition());
     }
 
     // 이동이 가능한가?
