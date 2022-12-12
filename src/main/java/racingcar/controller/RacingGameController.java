@@ -1,7 +1,10 @@
 package racingcar.controller;
 
 import racingcar.service.RacingGameService;
-import racingcar.view.InputView;
+
+import java.util.Map;
+
+import static racingcar.view.InputView.CAR_NAMES;
 
 public class RacingGameController {
 
@@ -11,7 +14,7 @@ public class RacingGameController {
         this.racingGameService = racingGameService;
     }
 
-    public void start() {
-        racingGameService.racingStart(InputView.readCarNames(), InputView.readGameStep());
+    public void start(Map<Target, String> requestParam) {
+        racingGameService.racingStart(requestParam.get(CAR_NAMES), requestParam.get(CAR_NAMES));
     }
 }
