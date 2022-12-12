@@ -2,7 +2,7 @@ package racingcar.domain.move.condition;
 
 public class MoveCondition implements Condition {
 
-    private RandomNumberGenerator randomNumberGenerator;
+    private final RandomNumberGenerator randomNumberGenerator;
 
     public MoveCondition(RandomNumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;

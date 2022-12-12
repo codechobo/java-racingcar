@@ -5,7 +5,7 @@ import racingcar.domain.move.engine.Engine;
 
 public class Move implements Moving {
 
-    private Condition condition; // 조건
+    private final Condition condition; // 조건
     private Engine engine; // 엔진
     private int position = 0; // 거리
 

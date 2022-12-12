@@ -1,8 +1,6 @@
 package racingcar.service;
 
 import racingcar.domain.Game;
-import racingcar.domain.Referee;
-import racingcar.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,10 +15,11 @@ public class RacingGameService {
     }
 
     public void racingStart(String readCarNames, int step) {
-        List<String> carNames = Arrays.stream(
-                        readCarNames.split(","))
-                .collect(Collectors.toList());
+        this.game.start(toList(readCarNames), step);
+    }
 
-        this.game.start(carNames, step);
+    private List<String> toList(String readCarNames) {
+        return Arrays.stream(readCarNames.split(","))
+                .collect(Collectors.toList());
     }
 }

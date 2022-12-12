@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Game {
 
-    private Referee referee;
+    private final Referee referee;
     private List<Car> cars = new ArrayList<>();
 
     public Game(Referee referee) {
@@ -18,7 +18,7 @@ public class Game {
         saveCarNames(carNames);
         OutputView.printRunResultMessage();
 
-        process(step);
+        movingProcess(step);
         OutputView.printVictoryCar(this.referee.findVictoryCarName(this.cars));
     }
 
@@ -26,7 +26,7 @@ public class Game {
         this.cars.addAll(Car.createCars(carNames));
     }
 
-    private void process(int step) {
+    private void movingProcess(int step) {
         while (true) {
             boolean isMoving = true;
             for (Car car : this.cars) {
