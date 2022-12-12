@@ -21,9 +21,9 @@ public class RacingGameController {
 
     public void start(Map<Target, String> requestParam) {
         String carNames = requestParam.get(Target.create(CAR_NAMES));
-        String step = requestParam.get(Target.create(STEP));
-
         validation.isLength(carNames);
+
+        String step = requestParam.get(Target.create(STEP));
         validation.isDigit(step);
 
         racingGameService.racingStart(carNames, step);
