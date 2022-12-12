@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.move.condition;
 
 public class MoveCondition implements Condition {
 

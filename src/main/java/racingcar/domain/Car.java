@@ -1,65 +1,50 @@
 package racingcar.domain;
 
-import racingcar.view.OutputView;
+import racingcar.domain.move.Moving;
+import racingcar.domain.move.engine.Engine;
+import racingcar.domain.move.Move;
+import racingcar.domain.move.condition.MoveCondition;
+import racingcar.domain.move.condition.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
-    private final String name;
-    private int position = 0;
-    private Condition condition;
-    private EngineStatus engineStatus;
 
-    public Car(String name, Condition condition) {
+    private final String name; // 이름
+    private Moving move; // 이동
+
+    public Car(String name, Moving move) {
         this.name = name;
-        this.condition = condition;
+        this.move = move;
     }
 
-    // 전진 기능
-    // 시도 횟수에 감소연산자를 사용하므로 마지막 수 1 이 들어오면 멈춘다.
-    public void moveForward(int step) {
-        increasePosition();
-        stop(step);
+    // 움직이다.
+    public void moving(int step) {
+        this.move.forward(step);
     }
 
-    private void increasePosition() {
-        if (condition.isCondition()) {
-            this.position += 1;
-        }
-
-        OutputView.printCarMoveStatus(this.name, this.position);
+    // 이동이 가능한가?
+    public boolean isPossibleMove() {
+        return move.canMove();
     }
 
-    // 멈춤 기능
-    private void stop(int step) {
-        if (step == 1) {
-            this.engineStatus = EngineStatus.OFF;
-            return;
-        }
-
-        this.engineStatus = EngineStatus.ON;
-    }
-
+    // 생성하다.
     public static List<Car> createCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            Car car = new Car(carName, new MoveCondition(new RandomNumberGenerator()));
+            Car car = new Car(carName, new Move(new MoveCondition(new RandomNumberGenerator()), new Engine()));
             cars.add(car);
         }
 
         return cars;
     }
 
-    public boolean isEngineOff() {
-        return this.engineStatus.isOff();
-    }
-
-    public int getPosition() {
-        return this.position;
+    public int currentMovePosition() {
+        return move.currentPosition();
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 }

@@ -13,13 +13,13 @@ public class Referee {
 
     private List<Car> findVictoryCar(List<Car> cars) {
         return cars.stream()
-                .filter(car -> car.getPosition() == findMaxPosition(cars))
+                .filter(car -> car.currentMovePosition() == findMaxPosition(cars))
                 .collect(Collectors.toList());
     }
 
     private int findMaxPosition(List<Car> cars) {
         return cars.stream()
-                .mapToInt(Car::getPosition)
+                .mapToInt(Car::currentMovePosition)
                 .max()
                 .orElse(0);
     }
